@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entities.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-    public interface IColorDal 
+    public interface IColorDal : IEntityRepository<Entities.Concrete.Color>
     {
     }
 }

@@ -12,10 +12,28 @@ namespace Business.Concrete
     public class CarManager : ICarService
     {
         ICarDal _carDal;
+        //Farkli ortamlara geciste kolaylik saglamasi icin burada bir referasn tutucu blogu olustuuruyoruz.              
+        //Bu bugun Sql yarin MySql baska bir gunde PostgreSql referansi tutabilir.
 
         public CarManager(ICarDal carDal)
         {
             _carDal = carDal;
+        }
+
+        public void Add(Car car)
+        {
+            if (car.ModelName.Length >= 2 && car.DailyPrice > 0)
+            {
+                _carDal.Add(car);
+            }
+            else
+            {
+                Console.WriteLine("Araba ismi 2 karakterden az ve günlük fiyatı 0'dan küçük olamaz.");
+            }
+        }
+        public void Delete(Car car)
+        {
+            _carDal.Delete(car);
         }
 
         public List<Car> GetAll()
@@ -24,25 +42,19 @@ namespace Business.Concrete
             //Yetkisi var MI ?
             return _carDal.GetAll();
         }
-
-        public List<Car> GetByBrandName(string min, string max)
-        {
-            return _carDal.GetAll();
-        }
-
-        public List<Car> GetByDailyPrice(decimal min, decimal max)
-        {
-            return _carDal.GetAll(c => c.DailyPrice > 0 && c.DailyPrice <= max);
-        }
-
         public List<Car> GetCarsByBrandId(int id)
         {
-            return _carDal.GetAll(c=>c.BrandId == id);
+            return _carDal.GetAll(b=>b.BrandId == id);
         }
 
         public List<Car> GetCarsByColorId(int id)
         {
             return _carDal.GetAll(c => c.ColorId == id);
+        }
+
+        public void Update(Car car)
+        {
+            _carDal.Update(car);
         }
     }
 }

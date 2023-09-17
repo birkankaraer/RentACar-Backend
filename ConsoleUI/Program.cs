@@ -10,9 +10,9 @@ namespace ConsoleUI
         {
             CarManager carManager = new CarManager(new EfCarDal());
 
-            foreach (var car in carManager.GetAll())
+            foreach (var brandid in carManager.GetCarsByBrandId(1))
             {
-                Console.WriteLine(car.BrandName+":"+ car.ModelYear+"->"+ car.DailyPrice);
+                Console.WriteLine(brandid.ModelName + ""+ brandid.BrandId);
             }
 
         }

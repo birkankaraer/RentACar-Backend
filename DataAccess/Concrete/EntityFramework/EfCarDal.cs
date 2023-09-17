@@ -20,6 +20,7 @@ namespace DataAccess.Concrete.EntityFramework
                 addedEntity.State = EntityState.Added;
                 context.SaveChanges();
             }
+            
         }
 
         public void Delete(Car entity)
