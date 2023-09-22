@@ -2,6 +2,7 @@
 using Core.Entities;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
+using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 
 namespace ConsoleUI
@@ -12,13 +13,27 @@ namespace ConsoleUI
         {
             //BrandIdTest();
             //BrandTest();
+            //ColorTest();
+            //DtoTest();
+
+        }
+
+        private static void DtoTest()
+        {
+            CarManager carManager = new CarManager(new EfCarDal());
+            foreach (var car in carManager.GetCarDetails())
+            {
+                Console.WriteLine(car.BrandName + "" + car.ModelName + "" + car.ColorName + "" + car.DailyPrice);
+            }
+        }
+
+        private static void ColorTest()
+        {
             ColorManager colorManager = new ColorManager(new EfColorDal());
             foreach (var color in colorManager.GetAll())
             {
                 Console.WriteLine(color.Name);
             }
-            
-
         }
 
         private static void BrandTest()
