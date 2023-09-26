@@ -33,9 +33,9 @@ namespace Business.Concrete
             return _customerDal.GetAll();
         }
 
-        public Customer GetCustomerById(int customerId)
+        public Customer GetCustomerById(int id)
         {
-            return _customerDal.Get(c => c.Id == c.Id);
+            return _customerDal.Get(c => c.CustomerId == c.CustomerId);
         }
 
         public Customer GetCustomerByUserId(int userId)
