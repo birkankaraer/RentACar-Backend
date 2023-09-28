@@ -13,6 +13,29 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
+            //CarTested();
+            BrandManager brandManager = new BrandManager(new EfBrandDal());
+
+            var result = brandManager.GetAll();
+
+            if (result.Success == true)
+            {
+                Console.WriteLine(result.Message);
+
+                foreach (var car in result.Data)
+                {
+                    Console.WriteLine(car.BrandName);
+                }
+
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+        }
+
+        private static void CarTested()
+        {
             CarManager carManager = new CarManager(new EfCarDal());
 
             var result = carManager.GetCarDetails();
@@ -25,13 +48,12 @@ namespace ConsoleUI
                 {
                     Console.WriteLine(car.BrandName + "/" + car.ModelName);
                 }
-                
+
             }
             else
             {
                 Console.WriteLine(result.Message);
             }
-            
         }
     }
 }
