@@ -15,7 +15,7 @@ namespace Business.Concrete
     public class CarManager : ICarService
     {
         ICarDal _carDal;
-        //Farkli ortamlara geciste kolaylik saglamasi icin burada bir referasn tutucu blogu olustuuruyoruz.              
+        //Farkli ortamlara geciste kolaylik saglamasi icin burada bir referasn tutucu blogu olusturuyoruz.              
         //Bu bugun Sql yarin MySql baska bir gunde PostgreSql referansi tutabilir.
 
         public CarManager(ICarDal carDal)
