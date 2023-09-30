@@ -14,6 +14,11 @@ namespace ConsoleUI
         static void Main(string[] args)
         {
             //CarTested();
+            //BrandTest();
+        }
+
+        private static void BrandTest()
+        {
             BrandManager brandManager = new BrandManager(new EfBrandDal());
 
             var result = brandManager.GetAll();
