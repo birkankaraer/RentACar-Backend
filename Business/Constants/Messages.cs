@@ -9,30 +9,30 @@ namespace Business.Constants
     public static class Messages
     {
         //System Messages
-        public static string MaintenanceTime = "Sistem bakımda";
+        public static string MaintenanceTime = "Sistem Bakımda";
         
         //Car Messages
-        public static string CarAdded = "Araba eklendi";
-        public static string CarDeleted = "Araba silindi";
-        public static string CarUpdated = "Araba güncellendi";
-        public static string CarNameInvalid = "Araba ismi geçersiz";
-        public static string CarsListed = "Arabalar listelendi";
-        public static string CarDetailsListed = "Araba detayları listelendi";
+        public static string CarAdded = "Araba Eklendi";
+        public static string CarDeleted = "Araba Silindi";
+        public static string CarUpdated = "Araba Güncellendi";
+        public static string CarNameInvalid = "Araba İsmi Geçersiz";
+        public static string CarsListed = "Arabalar Listelendi";
+        public static string CarDetailsListed = "Araba Detayları Listelendi";
 
         //Brand Messages
-        public static string BrandAdded = "Marka eklendi";
-        public static string BrandDeleted = "Marka silindi";
-        public static string BrandUpdated = "Marka güncellendi";
-        public static string BrandNameInvalid = "Marka ismi geçersiz";
-        public static string BrandsListed = "Markalar listelendi";
-        public static string BrandListed = "Marka listelendi";
+        public static string BrandAdded = "Marka Eklendi";
+        public static string BrandDeleted = "Marka Silindi";
+        public static string BrandUpdated = "Marka Güncellendi";
+        public static string BrandNameInvalid = "Marka İsmi geçersiz";
+        public static string BrandsListed = "Markalar Listelendi";
+        public static string BrandListed = "Marka Listelendi";
 
         //Color Messages
-        public static string ColorAdded = "Renk eklendi";
-        public static string ColorDeleted = "Renk silindi";
-        public static string ColorUpdated = "Renk güncellendi";
-        public static string ColorsListed = "Renkler listelendi";
-        public static string ColorListed = "Renk listelendi";
+        public static string ColorAdded = "Renk Eklendi";
+        public static string ColorDeleted = "Renk Silindi";
+        public static string ColorUpdated = "Renk Güncellendi";
+        public static string ColorsListed = "Renkler Listelendi";
+        public static string ColorListed = "Renk Listelendi";
 
         //Rental Messages
         public static string RentalAdded = "Kiralama Eklendi.";
@@ -41,5 +41,20 @@ namespace Business.Constants
         public static string RentalsListed = "Kiralamalar Listelendi.";
         public static string RentalListed = "Kiralama Listelendi.";
         public static string RentalCarError = "Araç Kiralanamaz.";
+
+        //Customer Messages
+        public static string CustomerAdded = "Müşteri Eklendi";
+        public static string CustomerDeleted = "Müşteri Silindi";
+        public static string CustomerUpdated = "Müşteri Güncellendi"; 
+        public static string CustomersListed = "Müşteriler Listelendi";
+        public static string CustomerListed = "Müşteri Listelendi";
+
+        //User Messages
+        public static string UserAdded = "Müşteri Eklendi";
+        public static string UserDeleted = "Müşteri Silindi";
+        public static string UserUpdated = "Müşteri Güncellendi";
+        public static string UsersListed = "Müşteriler Listelendi";
+        public static string UserListed = "Müşteri Listelendi";
+
     }
 }
