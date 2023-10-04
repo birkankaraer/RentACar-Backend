@@ -7,6 +7,7 @@ using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -40,7 +41,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>>GetAll()
         {
-            if (DateTime.Now.Hour==22)
+            if (DateTime.Now.Hour==7)
             {
                 return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
             }
@@ -49,15 +50,15 @@ namespace Business.Concrete
 
         public IDataResult<Car> GetById(int carId)
         {
-            return new SuccessDataResult<Car>(_carDal.Get(c => c.CarId == carId));
+            return new SuccessDataResult<Car>(_carDal.Get(c => c.CarId == carId),Messages.CarListed);
         }
 
-        public IDataResult<List<CarDetailDto>> GetCarDetails()
+        public IDataResult<List<CarDetailDto>> GetCarDetails(int carId)
         {
-            if (DateTime.Now.Hour == 22)
-            {
-                return new ErrorDataResult<List<CarDetailDto>>(Messages.MaintenanceTime);
-            }
+            //if (DateTime.Now.Hour == 22)
+            //{
+            //    return new ErrorDataResult<List<CarDetailDto>>(Messages.MaintenanceTime);
+            //}
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(),Messages.CarDetailsListed);
         }
 

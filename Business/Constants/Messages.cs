@@ -17,6 +17,7 @@ namespace Business.Constants
         public static string CarUpdated = "Araba Güncellendi";
         public static string CarNameInvalid = "Araba İsmi Geçersiz";
         public static string CarsListed = "Arabalar Listelendi";
+        public static string CarListed = "Araba Listelendi";
         public static string CarDetailsListed = "Araba Detayları Listelendi";
 
         //Brand Messages

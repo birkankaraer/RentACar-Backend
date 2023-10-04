@@ -15,6 +15,7 @@ namespace Core.DataAccess
     {
 
         List<T> GetAll(Expression<Func<T, bool>> filter=null);
+        //Tek bir dosya getirmek için aşağıdakini yazmak gerekiyor
         T Get(Expression<Func<T, bool>> filter);
         void Add(T entity);
         void Update(T entity);
