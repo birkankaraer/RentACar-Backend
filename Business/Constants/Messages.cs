@@ -51,11 +51,11 @@ namespace Business.Constants
         public static string CustomerListed = "Müşteri Listelendi";
 
         //User Messages
-        public static string UserAdded = "Müşteri Eklendi";
-        public static string UserDeleted = "Müşteri Silindi";
-        public static string UserUpdated = "Müşteri Güncellendi";
-        public static string UsersListed = "Müşteriler Listelendi";
-        public static string UserListed = "Müşteri Listelendi";
+        public static string UserAdded = "Kullanıcı Eklendi";
+        public static string UserDeleted = "Kullanıcı Silindi";
+        public static string UserUpdated = "Kullanıcı Güncellendi";
+        public static string UsersListed = "Kullanıcılar Listelendi";
+        public static string UserListed = "Kullanıcı Listelendi";
 
     }
 }

@@ -26,7 +26,7 @@ namespace Business.Concrete
 
         public IResult Add(Car car)
         {
-            if (car.ModelName.Length<2)
+            if (car.CarName.Length<2)
             {
                 return new ErrorResult(Messages.CarNameInvalid);
             }
