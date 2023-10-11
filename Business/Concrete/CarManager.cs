@@ -31,6 +31,7 @@ namespace Business.Concrete
         [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
+            //Business codes
             _carDal.Add(car);
             return new SuccessResult(Messages.CarAdded);
         }
