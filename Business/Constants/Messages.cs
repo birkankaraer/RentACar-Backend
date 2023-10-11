@@ -57,5 +57,9 @@ namespace Business.Constants
         public static string UsersListed = "Kullanıcılar Listelendi";
         public static string UserListed = "Kullanıcı Listelendi";
 
+        //CarImage Messages
+        public static string CarImageLimit = "Bir arabaya beşten fazla resim eklenemez";
+        public static string SuccessDeleted = "Resim silindi";
+        public static string SuccessUpdated = "Resim güncellendi";
     }
 }
