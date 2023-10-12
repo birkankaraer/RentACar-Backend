@@ -40,29 +40,11 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CarImageAdded);
         }
 
-
-        [ValidationAspect(typeof(CarImageValidator))]
         public IResult Delete(CarImage carImage)
         {
-            _fileHelper.Delete(carImage.ImagePath);
+            _fileHelper.Delete(PathConstants.ImagesPath + carImage.ImagePath);
             _carImageDal.Delete(carImage);
-            return new SuccessResult(Messages.SuccessDeleted);
-        }
-
-        [ValidationAspect(typeof(CarImageValidator))]
-        public IDataResult<CarImage> Get(int id)
-        {
-            return new SuccessDataResult<CarImage>(_carImageDal.Get(c => c.CarId == id));
-        }
-
-        public IDataResult<List<CarImage>> GetAll()
-        {
-            return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll());
-        }
-
-        public IDataResult<List<CarImage>> GetImagesByCarId(int id)
-        {
-            return new SuccessDataResult<List<CarImage>>(CheckIfCarImageNull(id), "listelendi");
+            return new SuccessResult(Messages.CarImageDeleted);
         }
 
         [ValidationAspect(typeof(CarImageValidator))]
@@ -72,7 +54,27 @@ namespace Business.Concrete
             carImage.ImagePath = _fileHelper.Update(file, PathConstants.ImagesPath + carImage.ImagePath, PathConstants.ImagesPath);
             carImage.Date = DateTime.Now;
             _carImageDal.Update(carImage);
-            return new SuccessResult(Messages.SuccessUpdated);
+            return new SuccessResult(Messages.CarImageUpdated);
+        }
+
+        public IDataResult<List<CarImage>> GetAll()
+        {
+            return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll());
+        }
+
+        public IDataResult<CarImage> GetByImageId(int imageId)
+        {
+            return new SuccessDataResult<CarImage>(_carImageDal.Get(c => c.CarImageId == imageId));
+        }
+
+        public IDataResult<List<CarImage>> GetByCarId(int carId)
+        {
+            var result = BusinessRules.Run(CheckCarImageExists(carId));
+            if (result != null)
+            {
+                return new ErrorDataResult<List<CarImage>>(GetDefaultImage(carId).Data);
+            }
+            return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(c => c.CarId == carId));
         }
 
         private IResult CheckIfCarImageLimit(int carId)
@@ -101,6 +103,21 @@ namespace Business.Concrete
                 };
             }
             return _carImageDal.GetAll(c => c.CarId == id);
+        }
+        private IResult CheckCarImageExists(int carId)
+        {
+            var result = _carImageDal.GetAll(c => c.CarId == carId).Count;
+            if (result > 0)
+            {
+                return new SuccessResult();
+            }
+            return new ErrorResult();
+        }
+        private IDataResult<List<CarImage>> GetDefaultImage(int carId)
+        {
+            List<CarImage> carImage = new List<CarImage>();
+            carImage.Add(new CarImage { Date = DateTime.Now, CarId = carId, ImagePath = "DefaultImage.jpg" });
+            return new SuccessDataResult<List<CarImage>>(carImage);
         }
     }
 }

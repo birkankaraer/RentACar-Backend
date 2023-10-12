@@ -2,6 +2,7 @@
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace WebAPI.Controllers
 {
@@ -15,6 +16,7 @@ namespace WebAPI.Controllers
         {
             _carImageService = carImageService;
         }
+
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
@@ -25,16 +27,18 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
+
         [HttpGet("getbyid")]
-        public IActionResult GetById(/*[FromForm(Name = ("Id"))] */int Id)
+        public IActionResult GetById(int imageId)
         {
-            var result = _carImageService.Get(Id);
+            var result = _carImageService.GetByImageId(imageId);
             if (result.Success)
             {
                 return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
         }
+
         [HttpPost("add")]
         public ActionResult Add([FromForm] IFormFile file, [FromForm] CarImage carImage)
         {
@@ -45,10 +49,10 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
         [HttpPost("update")]
-        public IActionResult Update([FromForm(Name = ("Image"))] IFormFile file, [FromForm(Name = ("Id"))] int Id)
+        public IActionResult Update([FromForm] IFormFile file, [FromForm] CarImage carImage)
         {
-            var carImage = _carImageService.Get(Id).Data;
             var result = _carImageService.Update(file, carImage);
             if (result.Success)
             {
@@ -58,10 +62,10 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete([FromForm(Name = ("Id"))] int Id)
+        public ActionResult Delete(CarImage carImage)
         {
-            var carImage = _carImageService.Get(Id).Data;
-            var result = _carImageService.Delete(carImage);
+            var carDeleteImage = _carImageService.GetByImageId(carImage.CarImageId).Data;
+            var result = _carImageService.Delete(carDeleteImage);
             if (result.Success)
             {
                 return Ok(result);
@@ -69,15 +73,15 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getimagesbycarid")]
-        public IActionResult GetImagesByCarId(int carId)
+        [HttpGet("getbycarid")]
+        public ActionResult GetByCarId(int carId)
         {
-            var result = _carImageService.GetImagesByCarId(carId);
+            var result = _carImageService.GetByCarId(carId);
             if (result.Success)
             {
                 return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
         }
     }
 }
