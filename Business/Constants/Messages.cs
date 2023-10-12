@@ -61,5 +61,6 @@ namespace Business.Constants
         public static string CarImageLimit = "Bir arabaya beşten fazla resim eklenemez";
         public static string SuccessDeleted = "Resim silindi";
         public static string SuccessUpdated = "Resim güncellendi";
+        public static string CarImageAdded = "Resim eklendi";
     }
 }

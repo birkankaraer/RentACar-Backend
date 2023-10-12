@@ -45,6 +45,8 @@ namespace WebAPI
             //builder.Services.AddSingleton<IUserService, UserManager>();
             //builder.Services.AddSingleton<IUserDal, EfUserDal>();
 
+
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
