@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace Entities.DTOs
 {
-    public class RentalDetailDto : IDto
+    public class UserForLoginDto : IDto
     {
-        public int RentalId { get; set; }
-        public string CarName { get; set; }
-        public string CustomerFullName { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
     }
 }

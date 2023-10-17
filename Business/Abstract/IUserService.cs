@@ -1,4 +1,4 @@
-﻿using Core.Utilities.Results;
+﻿using Core.Entities.Concrete;
 using Entities.Concrete;
 using Entities.DTOs;
 using System;
@@ -11,11 +11,8 @@ namespace Business.Abstract
 {
     public interface IUserService
     {
-        IDataResult<List<User>> GetAll();
-        IDataResult<User> GetById(int userId);
-        IDataResult<List<CarDetailDto>> GetUserDetails();
-        IResult Add(User user);
-        IResult Update(User user);
-        IResult Delete(User user);
+        List<OperationClaim> GetClaims(User user);
+        void Add(User user);
+        User GetByMail(string email);
     }
 }
