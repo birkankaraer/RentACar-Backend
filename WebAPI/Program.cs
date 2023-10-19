@@ -1,16 +1,16 @@
 
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using Business.Abstract;
-using Business.Concrete;
 using Business.DependencyResolvers.Autofac;
+using Core.DependencyResolvers;
+using Core.Extensions;
 using Core.Utilities.IoC;
 using Core.Utilities.Security.Encryption;
 using Core.Utilities.Security.Jwt;
-using DataAccess.Abstract;
-using DataAccess.Concrete.EntityFramework;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+
+
 
 namespace WebAPI
 {
@@ -27,15 +27,12 @@ namespace WebAPI
             
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
+            
             builder.Services.AddControllers();
             
             builder.Host.UseServiceProviderFactory(services => new AutofacServiceProviderFactory())
                         .ConfigureContainer<ContainerBuilder>(builder => { builder.RegisterModule(new AutofacBusinessModule()); });
-            
-            
-
-            builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+             
             var tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -52,7 +49,10 @@ namespace WebAPI
                         IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
                     };
                 });
-            ServiceTool.Create(builder.Services);
+            builder.Services.AddDependencyResolvers(new ICoreModule[]
+            {
+                new CoreModule(),
+            }); 
 
             var app = builder.Build();
 

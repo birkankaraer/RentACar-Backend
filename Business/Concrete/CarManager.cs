@@ -21,7 +21,7 @@ namespace Business.Concrete
     public class CarManager : ICarService
     {
         ICarDal _carDal;
-        //Farkli ortamlara geciste kolaylik saglamasi icin burada bir referasn tutucu blogu olusturuyoruz.              
+        //Farkli ortamlara geciste kolaylik saglamasi icin burada bir referans tutucu blogu olusturuyoruz.              
         //Bu bugun Sql yarin MySql baska bir gunde PostgreSql referansi tutabilir.
 
         public CarManager(ICarDal carDal)
@@ -43,7 +43,7 @@ namespace Business.Concrete
             _carDal.Delete(car);
             return new SuccessResult(Messages.CarDeleted);
         }
-
+        [CacheAspect]
         public IDataResult<List<Car>> GetAll()
         {
             if (DateTime.Now.Hour == 7)

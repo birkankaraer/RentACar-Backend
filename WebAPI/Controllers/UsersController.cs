@@ -9,50 +9,64 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthController : Controller
+    public class UsersController : ControllerBase
     {
-        private IAuthService _authService;
-
-        public AuthController(IAuthService authService)
+        IUserService _userService;
+        public UsersController(IUserService userService)
         {
-            _authService = authService;
+            _userService = userService;
         }
-
-        [HttpPost("login")]
-        public ActionResult Login(UserForLoginDto userForLoginDto)
+        [HttpPost("add")]
+        public IActionResult Add(User user)
         {
-            var userToLogin = _authService.Login(userForLoginDto);
-            if (!userToLogin.Success)
-            {
-                return BadRequest(userToLogin.Message);
-            }
-
-            var result = _authService.CreateAccessToken(userToLogin.Data);
+            var result = _userService.Add(user);
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
-
-            return BadRequest(result.Message);
-        }
-
-        [HttpPost("register")]
-        public ActionResult Register(UserForRegisterDto userForRegisterDto)
-        {
-            var userExists = _authService.UserExists(userForRegisterDto.Email);
-            if (!userExists.Success)
+            else
             {
-                return BadRequest(userExists.Message);
+                return BadRequest(result);
             }
-
-            var registerResult = _authService.Register(userForRegisterDto, userForRegisterDto.Password);
-            var result = _authService.CreateAccessToken(registerResult.Data);
+        }
+        [HttpPost("delete")]
+        public IActionResult Delete(User user)
+        {
+            var result = _userService.Delete(user);
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
-
-            return BadRequest(result.Message);
+            else
+            {
+                return BadRequest(result);
+            }
+        }
+        [HttpPost("update")]
+        public IActionResult Update(User user)
+        {
+            var result = _userService.Update(user);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest(result);
+            }
+        }
+        [HttpGet("getall")]
+        public IActionResult GetAll()
+        {
+            var result = _userService.GetAll();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest(result);
+            }
         }
     }
 }
