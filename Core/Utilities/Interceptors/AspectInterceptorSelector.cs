@@ -1,4 +1,5 @@
 ﻿using Castle.DynamicProxy;
+using Core.Aspects.Autofac.Performance;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,8 @@ namespace Core.Utilities.Interceptors
             var methodAttributes = type.GetMethod(method.Name)
                 .GetCustomAttributes<MethodInterceptionBaseAttribute>(true);
             classAttributes.AddRange(methodAttributes);
-            //classAttributes.Add(new ExceptionLogAspect(typeof(FileLogger))); //loglama alt yapısı yazıldıktan sonra bu eklenebilir
+            //classAttributes.Add(new ExceptionLogAspect(typeof(FileLogger))); //Burası sistemimizdeki tüm metodlarımızı loglamamızı sağlar. Şuanda o altyapıyı hazır olmadığı için comment'li duruyor.
+            //classAttributes.Add(new PerformanceAspect(0)); // Reports the running time of all methods to the Debug screen
 
 
             return classAttributes.OrderBy(x => x.Priority).ToArray();
