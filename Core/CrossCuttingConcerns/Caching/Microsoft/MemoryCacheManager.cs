@@ -12,11 +12,13 @@ namespace Core.CrossCuttingConcerns.Caching.Microsoft
 {
     public class MemoryCacheManager : ICacheManager
     {
+        //Adapter Pattern
         IMemoryCache _memoryCache;
         public MemoryCacheManager()
         {
             _memoryCache = ServiceTool.ServiceProvider.GetService<IMemoryCache>();
         }
+
         public void Add(string key, object value, int duration)
         {
             _memoryCache.Set(key, value, TimeSpan.FromMinutes(duration));
@@ -24,17 +26,17 @@ namespace Core.CrossCuttingConcerns.Caching.Microsoft
 
         public T Get<T>(string key)
         {
-            return _memoryCache.Get<T>(key);
+            return _memoryCache.Get<T>(key);  //İstediğimiz türde keyi getirir.
         }
 
         public object Get(string key)
         {
-            return _memoryCache.Get(key);
+            return _memoryCache.Get(key);  //key'i getirir
         }
 
         public bool IsAdd(string key)
         {
-            return _memoryCache.TryGetValue(key, out _);
+            return _memoryCache.TryGetValue(key, out _);  //bellekte varmı yokmu kontrolü yapar 
         }
 
         public void Remove(string key)
@@ -44,15 +46,32 @@ namespace Core.CrossCuttingConcerns.Caching.Microsoft
 
         public void RemoveByPattern(string pattern)
         {
-            var cacheEntriesCollectionDefinition = typeof(MemoryCache).GetProperty("EntriesCollection", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-            var cacheEntriesCollection = cacheEntriesCollectionDefinition.GetValue(_memoryCache) as dynamic;
-            List<ICacheEntry> cacheCollectionValues = new List<ICacheEntry>();
 
+            dynamic cacheEntriesCollection = null;
+            var cacheEntriesFieldCollectionDefinition = typeof(MemoryCache).GetField("_coherentState", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            var cacheEntriesPropertyCollectionDefinition = typeof(MemoryCache).GetProperty("EntriesCollection", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+
+            if (cacheEntriesFieldCollectionDefinition != null)
+            {
+                var coherentStateValueCollection = cacheEntriesFieldCollectionDefinition.GetValue(_memoryCache);
+                var entriesCollectionValueCollection = coherentStateValueCollection?.GetType()
+                    .GetProperty(
+                        "EntriesCollection",
+                        System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance
+                    );
+
+
+                cacheEntriesCollection = entriesCollectionValueCollection.GetValue(coherentStateValueCollection);
+            }
+
+
+            List<ICacheEntry> cacheCollectionValues = new List<ICacheEntry>();
             foreach (var cacheItem in cacheEntriesCollection)
             {
-                ICacheEntry cacheItemValue = cacheItem.GetType().GetProperty("Value").GetValue(cacheItem, null);
+                var cacheItemValue = cacheItem.GetType().GetProperty("Value").GetValue(cacheItem, null);
                 cacheCollectionValues.Add(cacheItemValue);
             }
+
 
             var regex = new Regex(pattern, RegexOptions.Singleline | RegexOptions.Compiled | RegexOptions.IgnoreCase);
             var keysToRemove = cacheCollectionValues.Where(d => regex.IsMatch(d.Key.ToString())).Select(d => d.Key).ToList();
@@ -61,6 +80,8 @@ namespace Core.CrossCuttingConcerns.Caching.Microsoft
             {
                 _memoryCache.Remove(key);
             }
+
+
         }
     }
 }
