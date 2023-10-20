@@ -10,7 +10,7 @@ namespace Business.Constants
     public static class Messages
     {
         //System Messages
-        public static string MaintenanceTime = "Sistem Bakımda";
+        public static string MaintenanceTime = "Sistem Bakımda.";
         
         //Car Messages
         public static string CarAdded = "Araba Eklendi";
