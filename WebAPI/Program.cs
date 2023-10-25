@@ -63,6 +63,8 @@ namespace WebAPI
                 app.UseSwaggerUI();
             }
 
+            app.UseCors(builder=>builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
+
             app.UseHttpsRedirection();
 
             app.UseAuthentication();
