@@ -1,2 +1,2 @@
 # RentACarProject
-It's a simple rent a car project. But it will be professional with new updates.
+RentACar is a car rental solution. This project includes an enterprise-grade solution for building RESTful services using ASP.NET WebAPI and C#.
