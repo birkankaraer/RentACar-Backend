@@ -34,7 +34,7 @@ namespace Business.Concrete
             {
                 return result;
             }
-            carImage.ImagePath = _fileHelper.Upload(file, PathConstants.ImagesPath);
+            carImage.ImagePath = _fileHelper.Upload(file, PathConstants.ImagePath);
             carImage.Date = DateTime.Now;
             _carImageDal.Add(carImage);
             return new SuccessResult(Messages.CarImageAdded);
@@ -42,7 +42,7 @@ namespace Business.Concrete
 
         public IResult Delete(CarImage carImage)
         {
-            _fileHelper.Delete(PathConstants.ImagesPath + carImage.ImagePath);
+            _fileHelper.Delete(PathConstants.ImagePath + carImage.ImagePath);
             _carImageDal.Delete(carImage);
             return new SuccessResult(Messages.CarImageDeleted);
         }
@@ -51,7 +51,7 @@ namespace Business.Concrete
         //[CacheRemoveAspect("ICarImageService.Get")]
         public IResult Update(IFormFile file, CarImage carImage)
         {
-            carImage.ImagePath = _fileHelper.Update(file, PathConstants.ImagesPath + carImage.ImagePath, PathConstants.ImagesPath);
+            carImage.ImagePath = _fileHelper.Update(file, PathConstants.ImagePath + carImage.ImagePath, PathConstants.ImagePath);
             carImage.Date = DateTime.Now;
             _carImageDal.Update(carImage);
             return new SuccessResult(Messages.CarImageUpdated);

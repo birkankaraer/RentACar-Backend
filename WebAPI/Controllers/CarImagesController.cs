@@ -28,8 +28,8 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
-        [HttpGet("getbyid")]
-        public IActionResult GetById(int imageId)
+        [HttpGet("getbyimageid")]
+        public IActionResult GetByImageId(int imageId)
         {
             var result = _carImageService.GetByImageId(imageId);
             if (result.Success)

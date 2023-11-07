@@ -35,25 +35,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  DailyPrice = c.DailyPrice,
                                  Description = c.Description,
                                  ModelYear = c.ModelYear,
-                                 CarImages = ((from ci in context.CarImages
-                                               where (c.CarId == ci.CarId)
-                                               select new CarImage
-                                               {
-                                                   CarId = ci.CarImageId,
-                                                   CarImageId = ci.CarId,
-                                                   Date = ci.Date,
-                                                   ImagePath = ci.ImagePath
-                                               }).ToList()).Count == 0
-                                                    ? new List<CarImage> { new CarImage { CarId = -1, CarImageId = c.CarId, Date = DateTime.Now, ImagePath = "/images/default.jpg" } }
-                                                    : (from ci in context.CarImages
-                                                       where (c.CarId == ci.CarId)
-                                                       select new CarImage
-                                                       {
-                                                           CarId = ci.CarImageId,
-                                                           CarImageId = ci.CarId,
-                                                           Date = ci.Date,
-                                                           ImagePath = ci.ImagePath
-                                                       }).ToList()
+                                 ImagePath = (from ci in context.CarImages where c.CarId == ci.CarId select ci.ImagePath).FirstOrDefault()!
                              };
                 return filter == null
                 ? result.ToList()
@@ -61,7 +43,6 @@ namespace DataAccess.Concrete.EntityFramework
 
             }
         }
-
-        
+      
     }
 }
