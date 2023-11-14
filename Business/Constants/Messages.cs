@@ -43,6 +43,7 @@ namespace Business.Constants
         public static string RentalsListed = "Kiralamalar Listelendi.";
         public static string RentalListed = "Kiralama Listelendi.";
         public static string RentalCarError = "Araç Kiralanamaz.";
+        public static string ThisCarIsAlreadyRentedInSelectedDateRange = "Bu araba zaten seçilen tarih aralığında kiralandı";
 
         //Customer Messages
         public static string CustomerAdded = "Müşteri Eklendi";
@@ -72,5 +73,12 @@ namespace Business.Constants
         public static string SuccessfulLogin = "Başarılı Giriş";
         public static string UserAlreadyExists = "Kullanıcı mevcut";
         public static string AccessTokenCreated = "Token oluşturuldu";
+       
+        //Payment
+        public static string ThisCardIsAlreadyRegisteredForThisCustomer = "Bu kart zaten geçerli müşteriye kayıtlı.";
+        public static string PaymentSuccessful = "Ödeme başarılı.";
+        public static string PaymentDenied = "Ödeme bilgileri reddedildi.";
+        public static string CardNumberMustConsistOfLettersOnly = "Kart numarası sadece rakamlardan oluşmalıdır.";
+        public static string LastTwoDigitsOfYearMustBeEntered = "Yılın son iki hanesini giriniz.";
     }
 }

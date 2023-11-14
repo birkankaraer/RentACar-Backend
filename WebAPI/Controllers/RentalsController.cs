@@ -73,5 +73,22 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+        [HttpGet("checkrentalcarid")]
+        public IActionResult CheckRentalCarId(int carId)
+        {
+            var result = _rentalService.CheckRentalCarId(carId);
+            
+            return Ok(result);
+        }
+        [HttpPost("checkrental")]
+        public IActionResult CheckRental(Rental entity)
+        {
+            var result = _rentalService.CheckRental(entity);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
     }
 }

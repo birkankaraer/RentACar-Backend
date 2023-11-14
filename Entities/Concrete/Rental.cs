@@ -14,7 +14,7 @@ namespace Entities.Concrete
         public int CustomerId { get; set; }
         public DateTime RentDate { get; set; }
         public DateTime ReturnDate { get; set; }
-        public int PaymentId { get; set; }
-        public bool? DeliveryStatus { get; set; }
+        //public int PaymentId { get; set; }
+        //public bool? DeliveryStatus { get; set; }
     }
 }
