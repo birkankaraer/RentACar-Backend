@@ -79,6 +79,7 @@ namespace Business.Concrete
             {
                 return new SuccessResult(Messages.PaymentSuccessful);
             }
+
             return new ErrorResult(Messages.PaymentDenied);
         }
 
