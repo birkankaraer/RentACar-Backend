@@ -119,5 +119,7 @@ namespace Business.Concrete
             carImage.Add(new CarImage { Date = DateTime.Now, CarId = carId, ImagePath = "DefaultImage.jpg" });
             return new SuccessDataResult<List<CarImage>>(carImage);
         }
+
+        
     }
 }

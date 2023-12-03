@@ -1,4 +1,5 @@
-﻿using Core.DataAccess.EntityFramework;
+﻿using Castle.Core.Resource;
+using Core.DataAccess.EntityFramework;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -25,7 +26,8 @@ namespace DataAccess.Concrete.EntityFramework
                                          CustomerId = c.CustomerId,
                                          Email = u.Email,
                                          FirstName = u.FirstName,
-                                         LastName = u.LastName
+                                         LastName = u.LastName,
+                                         FindeksScore = c.FindeksScore
                                      };
                 return customerDetail.ToList();
 

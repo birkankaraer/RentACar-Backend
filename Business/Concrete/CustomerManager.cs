@@ -2,6 +2,7 @@
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
+using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -25,6 +26,11 @@ namespace Business.Concrete
         [ValidationAspect(typeof(CustomerValidator))]
         public IResult Add(Customer customer)
         {
+            var result = BusinessRules.Run(CheckFindeksScoreMax(customer));
+            if (result != null)
+            {
+                return result;
+            }
             _customerDal.Add(customer);
             return new SuccessResult(Messages.CustomerAdded);
         }
@@ -55,6 +61,15 @@ namespace Business.Concrete
         {
             _customerDal.Update(customer);
             return new SuccessResult(Messages.CustomerUpdated);
+        }
+        public IResult CheckFindeksScoreMax(Customer customer)
+        {
+            if (customer.FindeksScore > 1900)
+            {
+                return new ErrorResult(Messages.FindeksScoreMax);
+            }
+
+            return new SuccessResult(Messages.FindeksScoreSuccesful);
         }
     }
 }

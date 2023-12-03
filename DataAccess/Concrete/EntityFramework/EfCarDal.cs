@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -35,6 +36,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  ModelYear = c.ModelYear,
                                  BrandId = c.BrandId,
                                  ColorId = c.ColorId,
+                                 MinFindeksScore = c.MinFindeksScore,
                                  ImagePath = (from ci in context.CarImages where c.CarId == ci.CarId select ci.ImagePath).FirstOrDefault()!
                              };
                 return result.ToList();
@@ -57,7 +59,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  BrandName = b.BrandName,
                                  ColorId = c.ColorId,
                                  ColorName = co.ColorName,
-                                 //MinFindexScore = c.MinFindexScore,
+                                 MinFindeksScore = c.MinFindeksScore,
                                  CarName = c.CarName,
                                  DailyPrice = c.DailyPrice,
                                  Description = c.Description,

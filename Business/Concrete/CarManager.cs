@@ -6,6 +6,7 @@ using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Performance;
 using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
+using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -16,15 +17,18 @@ namespace Business.Concrete
     public class CarManager : ICarService
     {
         ICarDal _carDal;
+        ICarImageService _carImageService;
         //Farkli ortamlara geciste kolaylik saglamasi icin burada bir referans tutucu blogu olusturuyoruz.              
         //Bu bugun Sql yarin MySql baska bir gunde PostgreSql referansi tutabilir.
 
-        public CarManager(ICarDal carDal)
+        public CarManager(ICarDal carDal, ICarImageService carImageService)
         {
             _carDal = carDal;
+            _carImageService = carImageService;
+
         }
         
-        //[SecuredOperation("car.add,admin")]
+        [SecuredOperation("car.add,admin")]
         [ValidationAspect(typeof(CarValidator))]
         [CacheRemoveAspect("ICarService.Get")]
         public IResult Add(Car car)
@@ -49,7 +53,14 @@ namespace Business.Concrete
 
         public IResult Delete(Car car)
         {
-            _carDal.Delete(car);
+            var rulesResult = BusinessRules.Run(CheckIfCarIdExist(car.CarId));
+            if (rulesResult != null)
+            {
+                return rulesResult;
+            }
+
+            var deletedCar = _carDal.Get(c => c.CarId == car.CarId);
+            _carDal.Delete(deletedCar);
             return new SuccessResult(Messages.CarDeleted);
         }
         [CacheAspect]
@@ -138,6 +149,14 @@ namespace Business.Concrete
             _carDal.Update(car);
             return new SuccessResult(Messages.CarUpdated);
         }
-
+        private IResult CheckIfCarIdExist(int carId)
+        {
+            var result = _carDal.GetAll(c => c.CarId == carId).Any();
+            if (!result)
+            {
+                return new ErrorResult(Messages.CarNotExist);
+            }
+            return new SuccessResult();
+        }
     }
 }

@@ -20,6 +20,7 @@ namespace Business.Constants
         public static string CarsListed = "Arabalar Listelendi";
         public static string CarListed = "Araba Listelendi";
         public static string CarDetailsListed = "Araba Detayları Listelendi";
+        public static string CarNotExist = "Araba mevcut degil";
 
         //Brand Messages
         public static string BrandAdded = "Marka Eklendi";
@@ -51,6 +52,8 @@ namespace Business.Constants
         public static string CustomerUpdated = "Müşteri Güncellendi"; 
         public static string CustomersListed = "Müşteriler Listelendi";
         public static string CustomerListed = "Müşteri Listelendi";
+        public static string FindeksScoreMax = "Findeks skoru 1900 den büyük olamaz";
+        public static string FindeksScoreSuccesful = "Başarılı";
 
         //User Messages
         public static string UserAdded = "Kullanıcı Eklendi";
@@ -80,5 +83,15 @@ namespace Business.Constants
         public static string PaymentDenied = "Ödeme bilgileri reddedildi.";
         public static string CardNumberMustConsistOfLettersOnly = "Kart numarası sadece rakamlardan oluşmalıdır.";
         public static string LastTwoDigitsOfYearMustBeEntered = "Yılın son iki hanesini giriniz.";
+
+        //Findeks
+        public static string FindeksAdded = "Findeks eklendi";
+        public static string FindeksDeleted = "Findeks güncellendi";
+        public static string FindeksUpdated = "Findeks silindi";
+
+        //CarFindeks
+        public static string CarFindeksAdded = "Araba findeks eklendi";
+        public static string CarFindeksDeleted = "Araba findeks silindi";
+        public static string CarFindeksUpdated = "Araba findeks güncellendi";
     }
 }
