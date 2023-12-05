@@ -57,6 +57,9 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<CarFindeksManager>().As<ICarFindeksService>().SingleInstance();
             builder.RegisterType<EfCarFindeksDal>().As<ICarFindeksDal>().SingleInstance();
 
+            builder.RegisterType<ContactManager>().As<IContactService>().SingleInstance();
+            builder.RegisterType<EfContactDal>().As<IContactDal>().SingleInstance();
+
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()

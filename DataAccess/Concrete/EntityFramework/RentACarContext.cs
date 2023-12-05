@@ -30,5 +30,6 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Findeks> Findeks { get; set; }
         public DbSet<CarFindeks> CarFindeks { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
     }
 }

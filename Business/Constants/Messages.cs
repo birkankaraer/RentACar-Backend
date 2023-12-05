@@ -93,5 +93,9 @@ namespace Business.Constants
         public static string CarFindeksAdded = "Araba findeks eklendi";
         public static string CarFindeksDeleted = "Araba findeks silindi";
         public static string CarFindeksUpdated = "Araba findeks güncellendi";
+
+        //Contact
+        public static string messagesent = "İleti gönderildi";
+        internal static string messageslisted ="İletiler listelendi" ;
     }
 }
