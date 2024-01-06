@@ -15,6 +15,45 @@ The rules that I tried to follow rules when writing this project
   - Clean Coding, 
   - DRY (Don't Repeat Yourself)
 
+## Türkçe Açıklama
+
+ ### Proje SOLID, Kurumsal Yazılım Mimari, AOP ve Yazılım Geliştirme Prensiplerine uygun geliştirildi.
+ 
+* .Net Core 7.0 platformu ile geliştirildi.
+* **Cross Cutting Concerns** "kesişen ilgililer" **interceptor *Autofac** kütüphanesi kullanılarak geliştirildi.
+  * Performance   
+  * Transaction
+  * Validation
+  * Caching
+
+* Entity Framework ORM kullanılarak geliştirildi.
+* **AOP** ile **Cross Cutting Concerns** "kesişen ilgililer" projede modülarite yapıda geliştirildi. 
+* **Exception Middleware** ile Merkezi hata mekanizması geliştrildi.
+* **Claim** Mekanizması ile rol bazlı yetkilendirmenin sınırları esnetildi.
+* **JWT (JSON Web Token)** kimlik doğrulaması entegre edildi.
+* **Fluent Validation** ile validasyon(doğrulama) işlemleri geliştirildi.
+* **IoC(Inversion Of Control)** ile (loose coupling) olan nesneler oluşturuldu.
+* **REST VE RESTFUL WEB SERVİS** ile sunucu-istemci iletişimi sağlandı.
+
+### C# Backend Katmanlar
+
+* **Core**: Toolların diğer projelerde kullanılmasını sağlayan genel bir katmandır. 
+* **Entities**: Veritabanındaki tabloları nesneye dönüştürdüğümüz katman.
+* **DataAccess**: Veritabanı işlemlerini yaptığımız katman.
+* **Business**:İş kurallarımızı geliştirdiğimiz katman.
+* **WebAPI**: Restful (Representational State Transfer) HTTP protokolü ile sunucu-istemci iletişimi sağladığımız katman. 
+
+
+
+
+## Contact
+
+Birkan Karaer - karaermustafabirkan@gmail.com
+
+Linkedin - [Linkedin](https://www.linkedin.com/in/mustafabirkankaraer/)
+
+Project Link: [https://github.com/birkankaraer/RentACar-Backend](https://github.com/birkankaraer/RentACar-Backend)
+
 # WEBAPI-SWAGGER
 ![rentacarswagger](https://github.com/birkankaraer/RentACar-Frontend/assets/139279313/d8af30c9-b565-4553-b56b-bab3279d70eb)
 
