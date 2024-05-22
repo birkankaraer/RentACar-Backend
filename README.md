@@ -43,8 +43,12 @@ The rules that I tried to follow rules when writing this project
 * **Business**:İş kurallarımızı geliştirdiğimiz katman.
 * **WebAPI**: Restful (Representational State Transfer) HTTP protokolü ile sunucu-istemci iletişimi sağladığımız katman. 
 
+## GIF
 
+![RentaCar](https://github.com/birkankaraer/MaskeTakip/assets/139279313/fb55d03d-4499-45af-bb60-88430dbc8e5e)
 
+# WEBAPI-SWAGGER
+![rentacarswagger](https://github.com/birkankaraer/RentACar-Frontend/assets/139279313/d8af30c9-b565-4553-b56b-bab3279d70eb)
 
 ## Contact
 
@@ -53,12 +57,4 @@ Birkan Karaer - karaermustafabirkan@gmail.com
 Linkedin - [Linkedin](https://www.linkedin.com/in/mustafabirkankaraer/)
 
 Project Link: [https://github.com/birkankaraer/RentACar-Backend](https://github.com/birkankaraer/RentACar-Backend)
-
-##GIF
-
-![RentaCar](https://github.com/birkankaraer/MaskeTakip/assets/139279313/fb55d03d-4499-45af-bb60-88430dbc8e5e)
-
-
-# WEBAPI-SWAGGER
-![rentacarswagger](https://github.com/birkankaraer/RentACar-Frontend/assets/139279313/d8af30c9-b565-4553-b56b-bab3279d70eb)
 
